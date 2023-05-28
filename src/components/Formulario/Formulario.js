@@ -4,12 +4,14 @@ import CampoTexto from "../CampoTexto/CampoTexto.js";
 import ListaOpciones from "../ListaOpciones/ListaOpciones.js";
 import Button from "../button/Button.js";
 
-const Formulario = () => {
+const Formulario = (props) => {
 
     const [nombre, setNombre] = useState("");
     const [puesto, setPuesto] = useState("");
     const [foto, setFoto] = useState("");
     const [equipo, setEquipo] = useState("");
+
+    const {registrarColaborador} = props
 
     const manejarEnvio = (e) => {
         e.preventDefault();
@@ -20,7 +22,7 @@ const Formulario = () => {
             equipo
         };
 
-        console.log(datosAEnviar);
+        registrarColaborador(datosAEnviar);
     }
     return <section className="formulario">
         <form onSubmit={manejarEnvio}>
@@ -49,6 +51,7 @@ const Formulario = () => {
             <ListaOpciones 
                 valor={equipo}
                 setEquipo={setEquipo}
+                equipo={props.equipo}
             />
             <Button>Crear</Button>
         </form>
